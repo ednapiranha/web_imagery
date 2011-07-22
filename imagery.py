@@ -25,8 +25,8 @@ def set_natural_num(val):
 class WebImagery():
     
     def __init__(self):
-        self.width = ''
-        self.height = ''
+        self.width = 200
+        self.height = 200
         self.service = ''
         self.url = ''
     
@@ -71,6 +71,32 @@ class WebImagery():
                 return page('#photo .photo-div img').attr('src')
             elif self.service == SERVICE_PATH:
                 return page('.photo-background img.photo').attr('src')
+            else:
+                return ""
+    
+    def get_image_as_html(self, alt=''):
+        """
+        if this is a direct image link, just send that back in html format
+        if not, we need to scrape the image service site for the proper element that contains the direct image link in html format
+        """
+
+        url = self.url
+        url_path = url.scheme + "://" + url.netloc + url.path
+        if self.service == SERVICE_DEFAULT:
+            return url_path
+        else:
+            page = pq(url=url_path)
+
+            if self.service == SERVICE_INSTAGRAM:
+                return '<img src="'+page('img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+            elif self.service == SERVICE_IMGUR:
+                return '<img src="'+page('img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+            elif self.service == SERVICE_TWITPIC:
+                return '<img src="'+page('#photo img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+            elif self.service == SERVICE_FLICKR:
+                return '<img src="'+page('#photo .photo-div img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+            elif self.service == SERVICE_PATH:
+                return '<img src="'+page('.photo-background img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
             else:
                 return ""
     
