@@ -16,7 +16,7 @@ def set_natural_num(val):
     if a negative number is passed in, force it to be positive. 
     e.g. -300 will return as 300
     """
-    if val >= 0 and type(num) is IntType:
+    if val >= 0 and type(val) is IntType:
         return val
     else:
         val = val * -1
@@ -41,9 +41,7 @@ class WebImagery():
         """
         detect whether a url contains an image in our list of supported services
         """
-        image_url = urlparse(url)
-        self.url = image_url
-        url = self.url
+        url = self.url = urlparse(url)
 
         if 'http' in url.scheme and self.__set_service():
             return True
@@ -88,7 +86,7 @@ class WebImagery():
             url.path.lower().endswith('png'):
             
             self.service = SERVICE_DEFAULT
-        
+            return True
         elif 'instagr' in url.netloc:
             self.service = SERVICE_INSTAGRAM
             return True
