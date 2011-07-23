@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
     name = "web_imagery",
     packages = ["web_imagery"],
-    version = "1.0",
+    version = "1.5",
     description = "Web images generator by link / service",
     author = "Edna Piranha",
     author_email = "jen@ednapiranha.com",
@@ -28,7 +28,6 @@ Currently supports:
 - Instagram
 - Imgur
 - Flickr
-- Twitpic
 - Path
 
 Requirements

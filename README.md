@@ -10,7 +10,6 @@ Currently supports:
 * Instagram
 * Imgur
 * Flickr
-* Twitpic
 * Path
 
 ## Requirements
@@ -19,9 +18,9 @@ Currently supports:
 
 ## Usage
 
->> from webimagery import *
+>> from web_imagery import web_imagery as wb
 
->> image = WebImagery()
+>> image = wb.WebImagery()
 
 First set the url
 

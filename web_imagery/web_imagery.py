@@ -7,7 +7,6 @@ from pyquery import PyQuery as pq
 SERVICE_DEFAULT = 'web'
 SERVICE_INSTAGRAM = 'instagram'
 SERVICE_IMGUR = 'imgur'
-SERVICE_TWITPIC = 'twitpic'
 SERVICE_FLICKR = 'flickr'
 SERVICE_PATH = 'path'
 
@@ -58,9 +57,7 @@ class WebImagery():
                 if self.service == SERVICE_INSTAGRAM:
                     return page('img.photo').attr('src')
                 elif self.service == SERVICE_IMGUR:
-                    return page('img.photo').attr('src')
-                elif self.service == SERVICE_TWITPIC:
-                    return page('#photo img.photo').attr('src')
+                    return page('#content .image img').attr('src')
                 elif self.service == SERVICE_FLICKR:
                     return page('#photo .photo-div img').attr('src')
                 elif self.service == SERVICE_PATH:
@@ -91,9 +88,7 @@ class WebImagery():
                 if self.service == SERVICE_INSTAGRAM:
                     return '<img src="'+page('img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 elif self.service == SERVICE_IMGUR:
-                    return '<img src="'+page('#content img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
-                elif self.service == SERVICE_TWITPIC:
-                    return '<img src="'+page('#photo img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+                    return '<img src="'+page('#content .image img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 elif self.service == SERVICE_FLICKR:
                     return '<img src="'+page('#photo .photo-div img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 elif self.service == SERVICE_PATH:
@@ -121,9 +116,6 @@ class WebImagery():
             return True
         elif 'imgur' in url.netloc:
             self.service = SERVICE_IMGUR
-            return True
-        elif 'twitpic' in url.netloc:
-            self.service = SERVICE_TWITPIC
             return True
         elif 'flickr' in url.netloc:
             self.service = SERVICE_FLICKR
