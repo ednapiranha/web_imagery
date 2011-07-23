@@ -12,7 +12,10 @@ class WebImageryTestCase(unittest.TestCase):
         """
         verify that setting dimensions always returns positive integers
         """
-        self.image.set_dimensions(-100, -300)
+        self.image.width = -100
+        self.image.height = -300
+        self.image.set_image('http://www.flickr.com/photos/ednapiranha/4437021184/')
+        self.image.get_image_as_html()
         self.assertEqual(self.image.width, 100)
         self.assertEqual(self.image.height, 300)
         
@@ -21,6 +24,12 @@ class WebImageryTestCase(unittest.TestCase):
         verify image is valid
         """
         self.assertEqual(self.image.set_image('http://www.flickr.com/photos/ednapiranha/4437021184/'), True)
+    
+    def testImageUrlIsNotEmpty(self):
+        """"
+        verify that image url is valid
+        """
+        self.assertEqual(self.image.get_image(), None)
         
     def testImageIsInvalid(self):
         """
