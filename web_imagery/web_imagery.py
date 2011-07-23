@@ -91,7 +91,7 @@ class WebImagery():
                 if self.service == SERVICE_INSTAGRAM:
                     return '<img src="'+page('img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 elif self.service == SERVICE_IMGUR:
-                    return '<img src="'+page('img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+                    return '<img src="'+page('#content img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 elif self.service == SERVICE_TWITPIC:
                     return '<img src="'+page('#photo img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 elif self.service == SERVICE_FLICKR:
