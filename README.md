@@ -37,4 +37,4 @@ Or you can get the image tag, setting your own alt text and dimensions
 
 >> image.get_image_as_html('cat sleeping')
 >> image.width = 350
->> '<img src="http://farm3.static.flickr.com/2788/4437021184_848d7fa79d.jpg" alt="cat sleeping" width="350" height="200" />'
+>> '&lt;img src="http://farm3.static.flickr.com/2788/4437021184_848d7fa79d.jpg" alt="cat sleeping" width="350" height="200" /&gt;'
