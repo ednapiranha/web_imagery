@@ -25,15 +25,19 @@ Currently supports:
 First set the url
 
 >> image.set_image('http://www.flickr.com/photos/ednapiranha/4437021184/')
+
 >> True
 
 You can get the source link
 
 >> image.get_image()
+
 >> 'http://farm3.static.flickr.com/2788/4437021184_848d7fa79d.jpg'
 
 Or you can get the image tag, setting your own alt text and dimensions
 
 >> image.get_image_as_html('cat sleeping')
+
 >> image.width = 350
+
 >> '&lt;img src="http://farm3.static.flickr.com/2788/4437021184_848d7fa79d.jpg" alt="cat sleeping" width="350" height="200" /&gt;'
