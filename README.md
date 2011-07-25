@@ -11,6 +11,9 @@ Currently supports:
 * Imgur
 * Flickr
 * Path
+* Skitch
+* Minus
+* Cloud App
 
 ## Requirements
 
