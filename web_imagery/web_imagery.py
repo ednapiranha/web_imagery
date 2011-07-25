@@ -9,6 +9,9 @@ SERVICE_INSTAGRAM = 'instagram'
 SERVICE_IMGUR = 'imgur'
 SERVICE_FLICKR = 'flickr'
 SERVICE_PATH = 'path'
+SERVICE_SKITCH = 'skitch'
+SERVICE_MINUS = 'minus'
+SERVICE_CLOUD = 'cloud'
 
 def set_natural_num(val):
     """
@@ -62,6 +65,12 @@ class WebImagery():
                     return page('#photo .photo-div img').attr('src')
                 elif self.service == SERVICE_PATH:
                     return page('.photo-background img.photo').attr('src')
+                elif self.service == SERVICE_SKITCH:
+                    return page('.myskitch-image .skitch-image-container img').attr('src')
+                elif self.service == SERVICE_MINUS:
+                    return page('link[rel="image_src"]').attr('href')
+                elif self.service == SERVICE_CLOUD:
+                    return page('#content img').attr('src')
                 else:
                     return ""
         except:
@@ -93,10 +102,16 @@ class WebImagery():
                     return '<img src="'+page('#photo .photo-div img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 elif self.service == SERVICE_PATH:
                     return '<img src="'+page('.photo-background img.photo').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+                elif self.service == SERVICE_SKITCH:
+                    return '<img src="'+page('.myskitch-image .skitch-image-container img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+                elif self.service == SERVICE_MINUS:
+                    return '<img src="'+page('link[rel="image_src"]').attr('href')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
+                elif self.service == SERVICE_CLOUD:
+                    return '<img src="'+page('#content img').attr('src')+'" alt="'+alt+'" width="'+str(self.width)+'" height="'+str(self.height)+'" />'
                 else:
                     return ""
         except:
-            print "Image url is invalid"
+            print page
     
     def __set_service(self):
         """"
@@ -123,5 +138,14 @@ class WebImagery():
         elif 'path' in url.netloc:
             self.service = SERVICE_PATH
             return True
+        elif 'skitch' in url.netloc:
+            self.service = SERVICE_SKITCH
+            return True
+        elif 'minus' in url.netloc or 'min.us' in url.netloc:
+            self.service = SERVICE_MINUS
+            return True
+        elif 'cl.ly' in url.netloc:
+            self.service = SERVICE_CLOUD
+            return True 
         else:
             return False
